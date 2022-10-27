@@ -15,14 +15,18 @@ class App extends Component {
   handleChange = event => {
     const { name, number, value } = event.currentTarget;
     this.setState({ [name]: value });
-    this.setState({ [number]: value });
+    // this.setState({ [number]: value });
   };
+  handleSubmit = event=>{
+    event.preventDefault();
+    console.log(this.state)
+  }
   render() {
     return (
       <>
         <h1>PhoneBook</h1>
-        <form>
-          <label htmlFor="">
+        <form onSubmit={this.handleSubmit}>
+          <label >
             Name
             <input
               type="text"
@@ -34,7 +38,7 @@ class App extends Component {
               required
             />
           </label>
-          <label htmlFor="">
+          <label >
             Number
             <input
               type="tel"
