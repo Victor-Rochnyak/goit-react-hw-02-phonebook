@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class App extends Component {
+class App extends React.Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -13,7 +13,7 @@ class App extends Component {
   };
 
   handleChange = event => {
-    const { name, number, value } = event.currentTarget;
+    const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
     // this.setState({ [number]: value });
   };
