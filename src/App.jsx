@@ -1,6 +1,8 @@
-import React from 'react';
+import ContactsList from 'components/ContactsList/ContactsList';
+import FormBook from 'components/FormBook/FormBook';
+import React, { Component } from 'react';
 
-class App extends React.Component {
+class App extends Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -8,54 +10,24 @@ class App extends React.Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
+  };
+  // Метод видалення контакту по ID //Працюємо лишe з map(), reduce(), filter()
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
 
-  handleChange = event => {
-    const { name, value } = event.currentTarget;
-    this.setState({ [name]: value });
-    // this.setState({ [number]: value });
-  };
-  handleSubmit = event=>{
-    event.preventDefault();
-    console.log(this.state)
-  }
+  formSubmitBook = data => {};
+
   render() {
+    const { contacts } = this.state;
     return (
       <>
         <h1>PhoneBook</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label >
-            Name
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title={this.state.contacts.name}
-              required
-            />
-          </label>
-          <label >
-            Number
-            <input
-              type="tel"
-              name="number"
-              value={this.state.number}
-              onChange={this.handleChange}
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-          </label>
-          <button type="submit">Click</button>
-        </form>
+        <FormBook onSubmit={this.formSubmitBook} />
         <h1>Contacts</h1>
-        <ul>
-          <li></li>
-        </ul>
+        <ContactsList contacts={contacts} onDeleteContact={this.deleteContact} />
       </>
     );
   }
