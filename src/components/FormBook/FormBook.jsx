@@ -17,7 +17,6 @@ class FormBook extends Component {
   // Сабміт на кнопку та ресет
   handleSubmit = event => {
     event.preventDefault();
-
     this.props.onSubmit(this.state);
     this.reset();
   };
