@@ -14,7 +14,7 @@ class App extends Component {
     ],
     filter: '',
   };
-  // добавдяємо контакт та номер телефону по сабміту
+  // добавдяємо контакт та номер телефону по сабміту та появляння помилки,якщо ім'я та номер вже є в контакті
   addContact = ({ name, number }) => {
     const contact = {
       id: nanoid(),
@@ -32,7 +32,6 @@ class App extends Component {
           contacts: [contact, ...contacts],
         }));
   };
-
   // Метод видалення контакту по ID //Працюємо лишe з map(), reduce(), filter()
   deleteContact = contactId => {
     this.setState(prevState => ({
@@ -43,24 +42,28 @@ class App extends Component {
   changeFilter = event => {
     this.setState({ filter: event.currentTarget.value });
   };
-  findContacts = () => {
+  getFindContacts = () => {
     const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
- 
-  render() {
-    // const { contacts} = this.state;
 
+  render() {
+    
+     const findContacts = this.getFindContacts();
     return (
       <>
         <h1>PhoneBook</h1>
         <FormBook onSubmit={this.addContact} />
         <h1>Contacts</h1>
-        <FilterContacts filter={this.state.filter} changeFilter={this.changeFilter} />
+        <FilterContacts
+          filter={this.state.filter}
+          changeFilter={this.changeFilter}
+        />
         <ContactsList
-          contacts={this.findContacts()}
+          contacts={findContacts}
           onDeleteContact={this.deleteContact}
         />
       </>
