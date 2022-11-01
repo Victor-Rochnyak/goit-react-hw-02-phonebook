@@ -4,7 +4,7 @@ const FilterContacts=({filter,changeFilter})=>(
     <label>
     <input
       type="text"
-      value={filter}
+      name={filter}
       onChange={changeFilter}
       placeholder="Find contacts by name"
     />
