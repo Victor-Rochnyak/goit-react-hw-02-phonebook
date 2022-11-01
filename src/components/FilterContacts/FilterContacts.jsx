@@ -1,13 +1,14 @@
 import React from 'react'
-
+// Стилі
+import {Label,Input} from './FilterContacts.styled'
 const FilterContacts=({filter,changeFilter})=>(
-    <label>
-    <input
+    <Label>
+    <Input
       type="text"
       name={filter}
       onChange={changeFilter}
       placeholder="Find contacts by name"
     />
-  </label>
+  </Label>
 )
 export default FilterContacts;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-
+// Стилі
+import {Form,Label,Input,Button} from './FormBok.styled';
 class FormBook extends Component {
   state = {
     name: '',
@@ -26,10 +27,10 @@ class FormBook extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.nameInputId}>
-          <p> Name</p>
-          <input
+      <Form onSubmit={this.handleSubmit}>
+        <Label htmlFor={this.nameInputId}>
+           Name:
+          <Input
             id={this.nameInputId}
             type="text"
             name="name"
@@ -38,10 +39,10 @@ class FormBook extends Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             required
           />
-        </label>
-        <label htmlFor={this.numberInputId}>
-          Number
-          <input
+        </Label>
+        <Label htmlFor={this.numberInputId}>
+           Number:
+          <Input
             id={this.numberInputId}
             type="tel"
             name="number"
@@ -51,9 +52,9 @@ class FormBook extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </label>
-        <button type="submit">Click</button>
-      </form>
+        </Label>
+        <Button type="submit">Add Contact</Button>
+      </Form>
     );
   }
 }

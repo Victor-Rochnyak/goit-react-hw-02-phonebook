@@ -1,9 +1,10 @@
 import ContactsList from 'components/ContactsList/ContactsList';
 import FormBook from 'components/FormBook/FormBook';
-import FilterContacts from './components/FilterContacts/FilterContacts';
+import FilterContacts from '../FilterContacts/FilterContacts';
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-
+// імпорт стилів
+import {AppContainer,H2} from './App.styled'
 class App extends Component {
   state = {
     contacts: [
@@ -51,21 +52,22 @@ class App extends Component {
   };
 
   render() {
-    
-     const findContacts = this.getFindContacts();
+    const findContacts = this.getFindContacts();
     return (
       <>
-        <h1>PhoneBook</h1>
-        <FormBook onSubmit={this.addContact} />
-        <h1>Contacts</h1>
-        <FilterContacts
-          filter={this.state.filter}
-          changeFilter={this.changeFilter}
-        />
-        <ContactsList
-          contacts={findContacts}
-          onDeleteContact={this.deleteContact}
-        />
+        <AppContainer>
+        <H2>Contacts</H2>
+          <FormBook onSubmit={this.addContact} />
+          <H2>Contacts list</H2>
+          <FilterContacts
+            filter={this.state.filter}
+            changeFilter={this.changeFilter}
+          />
+          <ContactsList
+            contacts={findContacts}
+            onDeleteContact={this.deleteContact}
+          />
+        </AppContainer>
       </>
     );
   }
